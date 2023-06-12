@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+<app-search-form
+  (search)="searchReporte($event)"
+  [anyError]="anyError"
+  [showEmptyDataMessage]="showEmptyDataMessage"
+  [isSearching]="isSearching"
+></app-search-form>
+<div id="table-results">
+  <div class="min-h-screen" *ngIf="anyData">
+    <app-results-table [data]="fetchedData"></app-results-table>
+  </div>
+</div>

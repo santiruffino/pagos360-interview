@@ -1,0 +1,61 @@
+<div class="h-screen background">
+  <div class="overflow-x-auto">
+    <table class="table table-xs table-pin-rows table-pin-cols">
+      <thead>
+        <tr class="bg-primary-focus text-secondary-content">
+          <td></td>
+          <td></td>
+          <td>Informed Date</td>
+          <td>Request ID</td>
+          <td>External Reference</td>
+          <td>Payer Name</td>
+          <td>Description</td>
+          <td>Payment Date</td>
+          <td>Channel</td>
+          <td>Amount Paid</td>
+          <td>Net Fee</td>
+          <td>IVA Fee</td>
+          <td>Net Amount</td>
+          <td>Available At</td>
+        </tr>
+      </thead>
+      <tbody class="bg-neutral">
+        <tr *ngFor="let item of data.data; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td></td>
+          <td>{{ item.informed_date | date : "mediumDate" }}</td>
+          <td>{{ item.request_id }}</td>
+          <td>{{ item.external_reference }}</td>
+          <td>{{ item.payer_name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.payment_date | date : "mediumDate" }}</td>
+          <td>{{ item.channel }}</td>
+          <td>{{ item.amount_paid }}</td>
+          <td>{{ item.net_fee }}</td>
+          <td>{{ item.iva_fee }}</td>
+          <td>{{ item.net_amount }}</td>
+          <td>{{ item.available_at | date : "mediumDate" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="w-100 grid place-items-center pt-10 pb-10 background">
+    <div class="stats stats-vertical lg:stats-horizontal shadow bg-primary-focus">
+      <div class="stat place-items-center">
+        <div class="stat-title">Total Collected</div>
+        <div class="stat-value">{{ data.total_collected | currency }}</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Total Gross Fee</div>
+        <div class="stat-value">{{ data.total_gross_fee | currency }}</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Total Net Amount</div>
+        <div class="stat-value">{{ data.total_net_amount | currency }}</div>
+      </div>
+    </div>
+  </div>
+</div>

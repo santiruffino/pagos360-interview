@@ -1,10 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { AuthModule, AuthService } from '@auth0/auth0-angular';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        AuthModule.forRoot({
+          domain: 'YOURTENANTDOMAIN.DATACENTER.auth0.com',
+          clientId: '...',
+        }),
+      ],
+      declarations: [AppComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    })
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -16,12 +29,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('Pagos360-Interview');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Pagos360-Interview app is running!');
   });
 });
